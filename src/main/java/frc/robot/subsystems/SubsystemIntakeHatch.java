@@ -20,14 +20,8 @@ public class SubsystemIntakeHatch extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public void intakeHatchDown(){
-    intakeHatch.set(-0.5);
-  }
-  public void intakeHatchUp(){
-    intakeHatch.set(0.5);
-  }
-  public void stop(){
-    intakeHatch.set(0);
+  public void intakeHatchMove(double sp){
+    intakeHatch.set(sp);
   }
 
   @Override

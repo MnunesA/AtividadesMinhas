@@ -20,16 +20,6 @@ public class SubsystemIntakeCargo extends Subsystem {
   public void intakeCargo(double speed){
     intakeCargo.set(speed);
   }
-  public void intakeCargoDown(double speed){
-    intakeCargo.set(speed);
-  }
-  public void stop(){
-    intakeCargo.set(0);
-  }
-
-  public double getIntakeCargo(){
-    return intakeCargo.get();
-  }
   
   @Override
   public void initDefaultCommand() {

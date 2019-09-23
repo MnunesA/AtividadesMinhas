@@ -12,48 +12,38 @@ import frc.robot.Robot;
 
 public class CommandIntakeHatch extends Command {
 
-  boolean sts;
+  double speed;
 
-  public CommandIntakeHatch() {
+  public CommandIntakeHatch(double sp) {
     super(Robot.intakeHatch);
-    setTimeout(3.0);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+   this.speed = sp;
   }
 
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
 
-  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    if (this.sts == false) {
-      this.sts = true;
-      Robot.intakeHatch.intakeHatchDown();
-     } else if (this.sts == true) {
-      this.sts = false;
-      Robot.intakeHatch.intakeHatchUp();
-     }
+      Robot.intakeHatch.intakeHatchMove(this.speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-   return isTimedOut();
+   return false;
   }
   
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intakeHatch.stop();
+    Robot.intakeHatch.intakeHatchMove(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.intakeHatch.intakeHatchMove(0.0);
   }
 }

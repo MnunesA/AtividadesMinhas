@@ -16,8 +16,8 @@ public class CommandDrive extends Command {
 
 	@Override
 	protected void execute() {
-		this.arcadeSpeed = -0.75 * SubsystemJoystick.axis_d_LY.get();
-		this.arcadeRotation = SubsystemJoystick.axis_d_RX.get();
+		this.arcadeSpeed = 0.8 * SubsystemJoystick.axis_d_LY.get();
+		this.arcadeRotation = -0.6 * SubsystemJoystick.axis_d_RX.get();
 		Robot.driver.arcadeDrive(this.arcadeSpeed, this.arcadeRotation);
 	}
 
