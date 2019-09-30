@@ -18,7 +18,7 @@ public class SubsystemIntakeCargo extends Subsystem {
 
   protected VictorSP cargoMotor = new VictorSP(CARGO_ID);
   
-  public void intakeUp(double sp){
+  public void intakeUp(double sp) {
     cargoMotor.set(sp);
   }
   
