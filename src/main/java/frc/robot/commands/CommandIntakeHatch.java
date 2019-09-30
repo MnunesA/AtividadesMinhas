@@ -25,7 +25,7 @@ public class CommandIntakeHatch extends Command {
 
   @Override
   protected void execute() {
-      Robot.intakeHatch.intakeHatchMove(this.speed);
+      Robot.intakeHatch.intakeUp(this.speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,14 +37,13 @@ public class CommandIntakeHatch extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intakeHatch.intakeHatchMove(0.0);
+    Robot.intakeHatch.intakeUp(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.intakeHatch.intakeHatchMove(0.0);
+    Robot.intakeHatch.intakeUp(0.0);
   }
-}
 }
