@@ -15,10 +15,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Add your docs here.
  */
 public class SubsystemIntakeCargo extends Subsystem {
-  protected VictorSP intakeCargo = new VictorSP(INTAKE_CARGO_ID);
+
+  protected VictorSP cargoMotor = new VictorSP(CARGO_ID);
   
-  public void intakeCargo(double speed){
-    intakeCargo.set(speed);
+  public void intakeUp(double sp){
+    cargoMotor.set(sp);
   }
   
   @Override
@@ -26,4 +27,5 @@ public class SubsystemIntakeCargo extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+
 }

@@ -16,12 +16,12 @@ import edu.wpi.first.wpilibj.VictorSP;
  */
 public class SubsystemIntakeHatch extends Subsystem {
 
-  protected VictorSP intakeHatch = new VictorSP (INTAKE_HATCH_ID);
+  protected VictorSP hatchMotor = new VictorSP(HATCH_ID);
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public void intakeHatchMove(double sp){
-    intakeHatch.set(sp);
+  public void intakeUp(double sp){
+    hatchMotor.set(sp);
   }
 
   @Override

@@ -47,3 +47,4 @@ public class CommandIntakeHatch extends Command {
     Robot.intakeHatch.intakeHatchMove(0.0);
   }
 }
+}
