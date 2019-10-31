@@ -6,10 +6,7 @@ import frc.robot.commands.*;
 
 public class OI {
     public OI(){
-        Robot.joystick.whenHeld(SubsystemJoystick.d_RT, new CommandIntakeCargo(0.4));
-        Robot.joystick.whenHeld(SubsystemJoystick.d_LT, new CommandIntakeCargo(-0.4));
-        Robot.joystick.whenHeld(SubsystemJoystick.d_LB, new CommandIntakeHatch(-0.5));
-        Robot.joystick.whenHeld(SubsystemJoystick.d_RB, new CommandIntakeHatch(0.5));
-
+    Robot.joystick.toggleWhenPressed(SubsystemJoystick.d_B, new CommandDrive(true));
+    Robot.joystick.toggleWhenPressed(SubsystemJoystick.d_B, new CommandDrive(false));
     }
 }

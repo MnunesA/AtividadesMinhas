@@ -1,0 +1,9 @@
+[
+  {
+    "artifact": "frcJava (in project FRC5800-Intakes_Matheus)",
+    "target": "roborio",
+    "debugfile": "frcJava_roborio.debugconfig",
+    "project": "FRC5800-Intakes_Matheus",
+    "language": "java"
+  }
+]

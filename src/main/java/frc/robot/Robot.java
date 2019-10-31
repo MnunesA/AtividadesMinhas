@@ -2,25 +2,22 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.SubsystemDriver;
 import frc.robot.subsystems.SubsystemJoystick;
-import frc.robot.subsystems.SubsystemIntakeCargo;
-import frc.robot.subsystems.SubsystemIntakeHatch;
+import frc.robot.commands.CommandDrive;
+import frc.robot.commands.autonomous.*;
 
 public class Robot extends TimedRobot {
   public static SubsystemDriver driver = new SubsystemDriver();
   public static SubsystemJoystick joystick = new SubsystemJoystick();
-  public static SubsystemIntakeCargo intakeCargo = new SubsystemIntakeCargo();
-  public static SubsystemIntakeHatch intakeHatch = new SubsystemIntakeHatch();
-
   public static OI m_oi;
-  
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+  CommandGroup r_autonomousCommand;
+  CommandGroup b_autonomousCommand;
+  private int number;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -30,7 +27,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    
   }
 
   /**
@@ -72,19 +69,23 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    int av = (int) SmartDashboard.getNumber("Autonomous Version", 9);
+    
+    this.number = av;
 
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
-     */
+    SmartDashboard.putNumber("Autonomous Version", this.number);
+    
+    b_autonomousCommand = new Position_Blue(this.number);
 
+    r_autonomousCommand = new Position_Red(this.number);
+    
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
+     if (b_autonomousCommand != null || r_autonomousCommand != null)
+      if (this.number >= 0 && this.number < 4) {
+      r_autonomousCommand.start();
+      } else if (this.number > 3 && this.number <= 9) {
+      b_autonomousCommand.start();
+      }
   }
 
   /**
@@ -97,13 +98,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
+    if (b_autonomousCommand != null || r_autonomousCommand != null)
+      if (this.number >= 0 && this.number < 4) {
+      r_autonomousCommand.cancel();
+      } else if (this.number > 3 && this.number <= 9) {
+      b_autonomousCommand.cancel();
+      }
+    CommandDrive.sts = true;
   }
 
   /**

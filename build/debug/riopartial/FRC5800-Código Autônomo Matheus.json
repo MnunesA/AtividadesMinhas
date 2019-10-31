@@ -1,0 +1,9 @@
+[
+  {
+    "artifact": "frcJava (in project FRC5800-Código Autônomo Matheus)",
+    "target": "roborio",
+    "debugfile": "frcJava_roborio.debugconfig",
+    "project": "FRC5800-Código Autônomo Matheus",
+    "language": "java"
+  }
+]
